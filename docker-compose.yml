@@ -2,9 +2,10 @@ version: '3'
 services:
     node:
         image: 'node:latest'
+        container_name: esgi-javascript
         volumes:
             - './:/app'
-        working_dir: /home/node/app
+        working_dir: /app
         ports:
             - '8060:3000'
         command:
