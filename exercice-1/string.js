@@ -1,52 +1,66 @@
-var string = "hello world";
-var object = {"animal": {"type": {"name": "dog"}}};
-
-
-function verify(string) {
+verify = function (string) {
     return !(string === null || string instanceof Object);
-}
+};
 
-function ucfirst(string) {
+ucfirst = function (string) {
     if (!verify(string)) {
-        return string;
+        return '';
     }
 
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
+    return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
+};
 
-function capitalize(string) {
+capitalize = function (string) {
+    if (!verify(string)) {
+        return '';
+    }
+
     return string.toLowerCase().replace(/\b\w/g, function (l) {
         return l.toUpperCase()
     });
-}
+};
 
-function camelCase(string) {
-    return capitalize(string).replace(' ', '');
-}
-
-function snake_case(string) {
-    return string.toLowerCase().replace(' ', '_');
-}
-
-function leet(string) {
+camelCase = function (string) {
     if (!verify(string)) {
-        return string;
+        return '';
     }
 
-    var alphabets = {a: "4", e: "3", i: "1", o: "0", u: "(_)", y: "7"};
+    return string.replace(/\b\w/g, function (l) {
+        return l.toUpperCase()
+    }).replace(/ /g, '');
+};
+
+snake_case = function (string) {
+    if (!verify(string)) {
+        return '';
+    }
+
+    return string.toLowerCase().replace(/ /g, '_');
+};
+
+leet = function (string) {
+    if (!verify(string)) {
+        return '';
+    }
+
+    const alphabets = {a: "4", e: "3", i: "1", o: "0", u: "(_)", y: "7"};
 
     Object.keys(alphabets).map(function (key) {
         string = string.replace(new RegExp(key, 'g'), alphabets[key]);
     });
 
     return string;
-}
+};
 
-function prop_access(object, string) {
-    var props = string.split('.');
-    var updated_string = [];
+prop_access = function (object, string) {
+    if (!verify(string)) {
+        return object;
+    }
 
-    for (var prop in props) {
+    const props = string.split('.');
+    const updated_string = [];
+
+    for (let prop in props) {
         prop = props[prop];
 
         updated_string.push(prop);
@@ -59,37 +73,32 @@ function prop_access(object, string) {
     }
 
     return object
-}
+};
 
-function verlan(string) {
+verlan = function (string) {
     if (!verify(string)) {
-        return string;
+        return '';
     }
 
-    var words = string.split(' ');
+    const words = string.split(' ');
 
     return words.map(function (word) {
         return word.split('').reverse().join('');
     }).join(' ')
-}
+};
 
-function yoda(string) {
-    string = string.trim().split(' ');
+yoda = function (string) {
+    if (!verify(string)) {
+        return '';
+    }
+
+    string = string.split(' ');
 
     return string.reverse().join(' ');
-}
+};
 
-function vig(string, key) {
+vig = function (string, key) {
     return "NOPE !";
-}
+};
 
-// console.log(ucfirst(string));
-// console.log(capitalize(string));
-// console.log(camelCase(string));
-// console.log(snake_case(string));
-// console.log(leet(string));
-// console.log(prop_access(object, "animal"));
-// console.log(prop_access(object, "animal.gender"));
-// console.log(verlan(string));
-// console.log(yoda(string));
-// console.log(vig("crypto"));
+module.exports = {verify, ucfirst, capitalize, camelCase, snake_case, leet, prop_access, verlan, yoda, vig};
