@@ -87,6 +87,10 @@ function type_check(arg1, config) {
 // console.log(type_check_v2(3, {enum: ["foo", "bar", 3]}));
 // => true
 
+console.log(type_check_v2({prop1: 1}, {type: "object"}) + " => expected true");
+console.log(type_check_v2("foo", {type: "string", value: "foo"}) + " => expected true");
+console.log(type_check_v2("bar", {type: "string", value: "foo"}) + " => expected false");
+console.log(type_check_v2(3, {enum: ["foo", "bar", 3]}) + " => expected true");
 
 var arg1 = {
     prop1: 1,
