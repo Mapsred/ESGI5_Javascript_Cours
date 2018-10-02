@@ -8,7 +8,6 @@ function type_check_v2(arg1, enumeration) {
         if (isArray && !(arg1 instanceof Array)) {
             return false;
         } else if (!isArray && typeof arg1 !== enumeration['type']) {
-            console.log('tttt');
             return false;
         }
     }
@@ -60,11 +59,9 @@ function type_check(arg1, config) {
             }
 
             if (!(key in arg1)) {
-                console.log('hhh');
                 return false;
             }
             if (!type_check_v2(arg1_v2, property)) {
-                console.log('hhhh');
                 return false;
             }
         }
