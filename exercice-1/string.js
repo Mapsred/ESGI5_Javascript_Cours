@@ -1,16 +1,16 @@
-verify = function (string) {
+function verify(string) {
     return !(string === null || string instanceof Object);
-};
+}
 
-ucfirst = function (string) {
+function ucfirst(string) {
     if (!verify(string)) {
         return '';
     }
 
     return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
-};
+}
 
-capitalize = function (string) {
+function capitalize(string) {
     if (!verify(string)) {
         return '';
     }
@@ -18,9 +18,9 @@ capitalize = function (string) {
     return string.toLowerCase().replace(/\b\w/g, function (l) {
         return l.toUpperCase()
     });
-};
+}
 
-camelCase = function (string) {
+function camelCase(string) {
     if (!verify(string)) {
         return '';
     }
@@ -28,17 +28,17 @@ camelCase = function (string) {
     return string.replace(/\b\w/g, function (l) {
         return l.toUpperCase()
     }).replace(/ /g, '');
-};
+}
 
-snake_case = function (string) {
+function snake_case(string) {
     if (!verify(string)) {
         return '';
     }
 
     return string.toLowerCase().replace(/ /g, '_');
-};
+}
 
-leet = function (string) {
+function leet(string) {
     if (!verify(string)) {
         return '';
     }
@@ -50,9 +50,9 @@ leet = function (string) {
     });
 
     return string;
-};
+}
 
-prop_access = function (object, string) {
+function prop_access(object, string) {
     if (!verify(string)) {
         return object;
     }
@@ -73,9 +73,9 @@ prop_access = function (object, string) {
     }
 
     return object
-};
+}
 
-verlan = function (string) {
+function verlan(string) {
     if (!verify(string)) {
         return '';
     }
@@ -85,9 +85,9 @@ verlan = function (string) {
     return words.map(function (word) {
         return word.split('').reverse().join('');
     }).join(' ')
-};
+}
 
-yoda = function (string) {
+function yoda(string) {
     if (!verify(string)) {
         return '';
     }
@@ -95,10 +95,4 @@ yoda = function (string) {
     string = string.split(' ');
 
     return string.reverse().join(' ');
-};
-
-vig = function (string, key) {
-    return "NOPE !";
-};
-
-module.exports = {verify, ucfirst, capitalize, camelCase, snake_case, leet, prop_access, verlan, yoda, vig};
+}
