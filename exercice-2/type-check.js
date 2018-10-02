@@ -1,4 +1,8 @@
 function type_check_v1(arg1, arg2) {
+    if (arg2 === "array") {
+        return arg1 instanceof Array;
+    }
+
     return typeof arg1 === arg2;
 }
 
